@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 
 /**
@@ -20,6 +21,7 @@ import android.view.View;
 public class MainControl extends Activity {
 
     private ControlRobot robot;
+    TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,11 @@ public class MainControl extends Activity {
         final View contentView = findViewById(R.id.fullscreen_content);
 
 
-        robot = new ControlRobot();
+        robot = new ControlRobot(this);
+
+        statusText = (TextView)findViewById(R.id.statusText);
+        statusText.setText("Waiting for connection ...");
+
 
         /**
          * Set button handlers - uses OnTouchListener so that up and down can be registered
@@ -41,9 +47,11 @@ public class MainControl extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    robot.moveDirection("1_1");
+                    String result = robot.moveDirection("STOP");
+                    //statusText.setText("Motor stop " + result);
+                } else {
+                    String result = robot.moveDirection("1_1");
+                    //statusText.setText("Forward left " + result);
                 }
                 return true;
             }
@@ -53,9 +61,11 @@ public class MainControl extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    robot.moveDirection("2_1");
+                    String result = robot.moveDirection("STOP");
+                    //statusText.setText("Motor stop " + result);
+                } else {
+                    String result = robot.moveDirection("2_1");
+                    //statusText.setText("Forward " + result);
                 }
                 return true;
             }
@@ -65,9 +75,11 @@ public class MainControl extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    robot.moveDirection("3_1");
+                    String result = robot.moveDirection("STOP");
+                    //statusText.setText("Motor stop " + result);
+                } else {
+                    String result = robot.moveDirection("3_1");
+                    //statusText.setText("Forward right " + result);
                 }
                 return true;
             }
@@ -78,8 +90,10 @@ public class MainControl extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
                     robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    statusText.setText("Motor stop");
+                } else {
                     robot.moveDirection("1_2");
+                    statusText.setText("Motor stop" );
                 }
                 return true;
             }
