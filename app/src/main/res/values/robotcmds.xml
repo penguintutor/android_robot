@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- File containing cmds used to access robot web server -->
+    <!-- IP address to be moved to config file in future version -->
+<resources>
+    <string name="ipaddress">"10.5.5.1"</string>
+    <integer name="port">80</integer>
+    <string name="control">/control</string>
+    <string name="status">"/status"</string>
+    <string name="photocapture">/photocapture</string>
+    <string name="photoview">/photo</string>
+</resources>

@@ -41,7 +41,8 @@
                     android:scaleType="fitXY"
                     android:layout_alignTop="@+id/directionButton_2_1"
                     android:layout_toLeftOf="@+id/directionButton_2_1"
-                    android:layout_toStartOf="@+id/directionButton_2_1" />
+                    android:layout_toStartOf="@+id/directionButton_2_1"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageButton
                     android:layout_width="90dip"
@@ -51,7 +52,8 @@
                     android:scaleType="fitXY"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/directionButton_1_2"
-                    android:layout_toEndOf="@+id/directionButton_1_2" />
+                    android:layout_toEndOf="@+id/directionButton_1_2"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageButton
                     android:layout_width="90dip"
@@ -60,7 +62,8 @@
                     android:layout_alignTop="@+id/directionButton_2_1"
                     android:layout_toRightOf="@+id/directionButton_2_1"
                     android:src="@drawable/directions_3_1"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageButton
                     android:layout_width="90dip"
@@ -69,7 +72,8 @@
                     android:layout_alignTop="@+id/directionButton_2_2"
                     android:layout_toLeftOf="@+id/directionButton_2_2"
                     android:src="@drawable/directions_1_2"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageButton
                     android:layout_width="90dip"
@@ -78,7 +82,8 @@
                     android:src="@drawable/directions_2_2"
                     android:scaleType="fitXY"
                     android:layout_below="@+id/directionButton_2_1"
-                    android:layout_centerHorizontal="true" />
+                    android:layout_centerHorizontal="true"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageButton
                     android:layout_width="90dip"
@@ -87,7 +92,8 @@
                     android:layout_alignTop="@+id/directionButton_2_2"
                     android:layout_toRightOf="@+id/directionButton_2_2"
                     android:src="@drawable/directions_3_1"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageButton
                     android:layout_width="90dip"
@@ -96,7 +102,8 @@
                     android:layout_alignTop="@+id/directionButton_2_3"
                     android:layout_toLeftOf="@+id/directionButton_2_3"
                     android:src="@drawable/directions_1_3"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:onClick="handleDirectionClick" />
 
 
                 <ImageButton
@@ -106,7 +113,8 @@
                     android:layout_below="@+id/directionButton_2_2"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/directions_2_3"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageButton
                     android:layout_width="90dip"
@@ -116,7 +124,8 @@
                     android:layout_toRightOf="@+id/directionButton_2_3"
                     android:layout_toEndOf="@+id/directionButton_2_3"
                     android:src="@drawable/directions_3_3"
-                    android:scaleType="fitXY" />
+                    android:scaleType="fitXY"
+                    android:onClick="handleDirectionClick" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -135,13 +144,15 @@
 
                 <SeekBar
                     android:layout_marginTop="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="260dp"
                     android:id="@+id/seekBar"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:rotation="270"
                     android:layout_above="@+id/imageView"
+                    android:layout_toRightOf="@+id/directionButton_3_1"
+                    android:layout_marginLeft="10dp"
                     android:layout_alignParentTop="true" />
 
 
