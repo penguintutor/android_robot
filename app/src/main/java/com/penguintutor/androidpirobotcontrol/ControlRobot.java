@@ -2,37 +2,11 @@ package com.penguintutor.androidpirobotcontrol;
 
 
 import android.content.Context;
-import android.os.AsyncTask;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import android.os.AsyncTask;
-import android.util.Log;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 /**
+ * Control Robot vehicle
+ * see http://www.penguintutor.com
  * Created by stewart on 20/02/15.
  */
 public class ControlRobot {
@@ -110,6 +84,7 @@ public class ControlRobot {
 
 
     // Able to run system commands
+    @SuppressWarnings("unused")
     public String cmd(String instruction) {
         switch (instruction) {
             case "status":
@@ -126,53 +101,55 @@ public class ControlRobot {
         sendGetCmd(robotIp, port, command);
     }
 
+    public String getStatus() {
+        sendGetCmd(robotIp, port, "/status");
+        return "Checking robot status";
+    }
+
+
 
     // http get using HttpGet
     private void sendGetCmd(String host, int port, String path) {
-        try {
-            new HttpSendMsg().execute(new URL("http://" + host + ":" + port + path));
-        }
-        catch (MalformedURLException e) {
-            // need to handle this ?
-        }
+        new HttpSendMsg().send("http://" + host + ":" + port + path);
     }
 
-    class HttpSendMsg extends AsyncTask<URL, Void, String> {
+    class HttpSendMsg implements RestTask.ProgressCallback, RestTask.ResponseCallback {
 
-        @Override
-        protected String doInBackground(URL... urls) {
-            StringBuilder builder = new StringBuilder();
-            HttpClient client = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(urls[0].toString());
+        //private ProgressDialog mProgress;
 
-            ((MainControl) contextGUI).statusText.setText("Sending: "+urls[0].toString());
-
-            try {
-                HttpResponse response = client.execute(httpGet);
-                StatusLine statusLine = response.getStatusLine();
-                int statusCode = statusLine.getStatusCode();
-                if (statusCode == 200) {
-                    HttpEntity entity = response.getEntity();
-                    InputStream content = entity.getContent();
-                    BufferedReader reader = new BufferedReader(
-                            new InputStreamReader(content));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        builder.append(line);
-                    }
-                    return "Success " + line;
-                } else {
-                    return "Error unable to connect";
-                }
-            } catch (ClientProtocolException e) {
-                return "Error Client Protocol Exception";
-            } catch (IOException e) {
-                return "Error IO Exception";
-            }
+        public void HttpSendMsg() {
         }
 
-        protected void onPostExecute(String result) {
-            ((MainControl) contextGUI).statusText.setText(result); // changing TextView
+        private void send (String url) {
+
+            //Create the requests
+            try{
+                //Simple GET
+                RestTask getTask = RestUtil.obtainGetTask(url);
+                getTask.setResponseCallback(this);
+                getTask.setProgressCallback(this);
+
+                getTask.execute();
+
+                //Display progress to the user
+            } catch (Exception e) {
+                ((MainControl) contextGUI).statusText.setText(e.getMessage());
+            }
+
+        }
+
+        @Override
+        public void onProgressUpdate(int progress) {
+        }
+
+        @Override
+        public void onRequestSuccess(String response) {
+            ((MainControl) contextGUI).statusText.setText("success:" + response);
+        }
+
+        @Override
+        public void onRequestError(Exception error) {
+            ((MainControl) contextGUI).statusText.setText("error: "+error);
         }
     }
 }

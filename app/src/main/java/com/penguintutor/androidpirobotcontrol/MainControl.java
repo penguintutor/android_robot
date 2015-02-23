@@ -36,7 +36,7 @@ public class MainControl extends Activity {
         robot = new ControlRobot(this);
 
         statusText = (TextView)findViewById(R.id.statusText);
-        statusText.setText("Waiting for connection ...");
+        statusText.setText("Initialization ...");
 
 
         /**
@@ -47,11 +47,9 @@ public class MainControl extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    String result = robot.moveDirection("STOP");
-                    //statusText.setText("Motor stop " + result);
+                    robot.moveDirection("STOP");
                 } else {
-                    String result = robot.moveDirection("1_1");
-                    //statusText.setText("Forward left " + result);
+                    robot.moveDirection("1_1");
                 }
                 return true;
             }
@@ -61,11 +59,9 @@ public class MainControl extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    String result = robot.moveDirection("STOP");
-                    //statusText.setText("Motor stop " + result);
+                    robot.moveDirection("STOP");
                 } else {
-                    String result = robot.moveDirection("2_1");
-                    //statusText.setText("Forward " + result);
+                    robot.moveDirection("2_1");
                 }
                 return true;
             }
@@ -75,11 +71,9 @@ public class MainControl extends Activity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
-                    String result = robot.moveDirection("STOP");
-                    //statusText.setText("Motor stop " + result);
+                    robot.moveDirection("STOP");
                 } else {
-                    String result = robot.moveDirection("3_1");
-                    //statusText.setText("Forward right " + result);
+                    robot.moveDirection("3_1");
                 }
                 return true;
             }
@@ -90,10 +84,8 @@ public class MainControl extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
                     robot.moveDirection("STOP");
-                    statusText.setText("Motor stop");
                 } else {
                     robot.moveDirection("1_2");
-                    statusText.setText("Motor stop" );
                 }
                 return true;
             }
@@ -104,7 +96,7 @@ public class MainControl extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
                     robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                } else {
                     robot.moveDirection("2_2");
                 }
                 return true;
@@ -116,7 +108,7 @@ public class MainControl extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
                     robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                } else {
                     robot.moveDirection("3_2");
                 }
                 return true;
@@ -128,7 +120,7 @@ public class MainControl extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
                     robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                } else {
                     robot.moveDirection("1_3");
                 }
                 return true;
@@ -140,7 +132,7 @@ public class MainControl extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
                     robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                } else {
                     robot.moveDirection("2_3");
                 }
                 return true;
@@ -152,12 +144,19 @@ public class MainControl extends Activity {
                 if (event.getAction() == MotionEvent.ACTION_UP ||
                         event.getAction() == MotionEvent.ACTION_CANCEL) {
                     robot.moveDirection("STOP");
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                } else {
                     robot.moveDirection("3_3");
                 }
                 return true;
             }
         });
+
+
+        //
+        statusText.setText("Connecting to robot ...");
+        statusText.setText(robot.getStatus());
+
+
     }
 
     @Override
