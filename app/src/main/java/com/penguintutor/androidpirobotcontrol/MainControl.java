@@ -1,7 +1,5 @@
 package com.penguintutor.androidpirobotcontrol;
 
-import com.penguintutor.androidpirobotcontrol.util.SystemUiHider;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,10 +8,8 @@ import android.widget.TextView;
 
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- *
- * @see SystemUiHider
+ * Android app to control Raspberry Pi robot
+ * http://www.penguintutor.com
  */
 public class MainControl extends Activity {
 
