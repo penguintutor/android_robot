@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URLConnection;
@@ -58,9 +59,19 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < formData.size(); i++) {
             NameValuePair item = formData.get(i);
-            sb.append( URLEncoder.encode(item.getName()) );
+            try {
+                sb.append( URLEncoder.encode(item.getName(), "UTF-8") );
+            }
+            catch (UnsupportedEncodingException e) {
+                // We have hardcoded the encoding so should not get this exception
+            }
             sb.append("=");
-            sb.append( URLEncoder.encode(item.getValue()) );
+            try {
+                sb.append( URLEncoder.encode(item.getValue(), "UTF-8") );
+            }
+            catch (UnsupportedEncodingException e) {
+                // We have hardcoded the encoding so should not get this exception
+            }
             if (i != (formData.size() - 1)) {
                 sb.append("&");
             }
@@ -75,11 +86,11 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
     }
 
     public void setResponseCallback(ResponseCallback callback) {
-        mResponseCallback = new WeakReference<ResponseCallback>(callback);
+        mResponseCallback = new WeakReference<>(callback);
     }
 
     public void setProgressCallback(ProgressCallback callback) {
-        mProgressCallback = new WeakReference<ProgressCallback>(callback);
+        mProgressCallback = new WeakReference<>(callback);
     }
 
     private void writeMultipart(String boundary, String charset, OutputStream output, boolean writeContent) throws IOException {
@@ -120,7 +131,7 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
                 try {
                     input = new FileInputStream(mUploadFile);
                     byte[] buffer = new byte[1024];
-                    for (int length = 0; (length = input.read(buffer)) > 0;) {
+                    for (int length; (length = input.read(buffer)) > 0;) {
                         output.write(buffer, 0, length);
                     }
                     // Don't close the OutputStream yet
@@ -132,6 +143,8 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
                         try {
                             input.close();
                         } catch (IOException e) {
+                            // do nothing
+
                         }
                     }
                 }

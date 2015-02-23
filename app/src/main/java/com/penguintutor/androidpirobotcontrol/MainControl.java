@@ -2,11 +2,8 @@ package com.penguintutor.androidpirobotcontrol;
 
 import com.penguintutor.androidpirobotcontrol.util.SystemUiHider;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -29,8 +26,8 @@ public class MainControl extends Activity {
 
         setContentView(R.layout.activity_main_control);
 
-        final View controlsView = findViewById(R.id.fullscreen_content_controls);
-        final View contentView = findViewById(R.id.fullscreen_content);
+        //final View controlsView = findViewById(R.id.fullscreen_content_controls);
+        //final View contentView = findViewById(R.id.fullscreen_content);
 
 
         robot = new ControlRobot(this);

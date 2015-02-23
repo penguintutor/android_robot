@@ -117,8 +117,6 @@ public class ControlRobot {
 
         //private ProgressDialog mProgress;
 
-        public void HttpSendMsg() {
-        }
 
         private void send (String url) {
 
