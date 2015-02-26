@@ -23,9 +23,8 @@
                 android:id="@+id/directionButton_1_1"
                 android:src="@drawable/directions_1_1"
                 android:scaleType="fitXY"
-                android:layout_alignTop="@+id/directionButton_2_1"
-                android:layout_toLeftOf="@+id/directionButton_2_1"
-                android:layout_toStartOf="@+id/directionButton_2_1" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true" />
 
             <ImageButton
                 android:layout_width="90dip"
@@ -34,8 +33,8 @@
                 android:src="@drawable/directions_2_1"
                 android:scaleType="fitXY"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/directionButton_1_2"
-                android:layout_toEndOf="@+id/directionButton_1_2" />
+                android:layout_toRightOf="@+id/directionButton_1_1"
+                android:layout_toEndOf="@+id/directionButton_1_1" />
 
             <ImageButton
                 android:layout_width="90dip"
@@ -50,8 +49,8 @@
                 android:layout_width="90dip"
                 android:layout_height="90dip"
                 android:id="@+id/directionButton_1_2"
-                android:layout_alignTop="@+id/directionButton_2_2"
-                android:layout_toLeftOf="@+id/directionButton_2_2"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/directionButton_1_1"
                 android:src="@drawable/directions_1_2"
                 android:scaleType="fitXY" />
 
@@ -62,6 +61,7 @@
                 android:src="@drawable/directions_2_2"
                 android:scaleType="fitXY"
                 android:layout_below="@+id/directionButton_2_1"
+                android:layout_toRightOf="@+id/directionButton_1_2"
                 android:layout_centerHorizontal="true" />
 
             <ImageButton
@@ -77,8 +77,8 @@
                 android:layout_width="90dip"
                 android:layout_height="90dip"
                 android:id="@+id/directionButton_1_3"
-                android:layout_alignTop="@+id/directionButton_2_3"
-                android:layout_toLeftOf="@+id/directionButton_2_3"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/directionButton_1_2"
                 android:src="@drawable/directions_1_3"
                 android:scaleType="fitXY" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="90dip"
                 android:id="@+id/directionButton_2_3"
                 android:layout_below="@+id/directionButton_2_2"
-                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/directionButton_1_2"
                 android:src="@drawable/directions_2_3"
                 android:scaleType="fitXY" />
 
@@ -102,31 +102,40 @@
                 android:src="@drawable/directions_3_3"
                 android:scaleType="fitXY" />
 
+            <ImageButton
+                android:layout_width="90dip"
+                android:layout_height="90dip"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/speedButton_increase"
+                android:layout_alignTop="@+id/directionButton_3_1"
+                android:layout_toRightOf="@+id/directionButton_3_1"
+                android:src="@drawable/speed_1_1"
+                android:scaleType="fitXY" />
 
-            <SeekBar
-                android:layout_marginTop="20dp"
-                android:layout_width="260dp"
-                android:layout_height="40dp"
-                android:max="100"
-                android:progress="80"
-                android:id="@+id/seekBar"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:rotation="270"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/directionButton_3_1"
-                android:layout_toEndOf="@+id/directionButton_3_1"
-                android:layout_alignParentTop="true" />
-            <!-- <com.penguintutor.androidpirobotcontrol.VerticalSeekBar
-            android:id="@+id/calculatorVerticalSeekBar"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="bottom"
-            android:max="4"
-                android:layout_toRightOf="@+id/directionButton_3_1"
-                android:layout_toEndOf="@+id/directionButton_3_1"
-            android:progress="2" /> -->
+
+            <ImageButton
+                android:layout_width="90dip"
+                android:layout_height="90dip"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/speedButton_decrease"
+                android:layout_alignTop="@+id/directionButton_3_3"
+                android:layout_toRightOf="@+id/directionButton_3_3"
+                android:src="@drawable/speed_1_2"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Speed\n10"
+                android:id="@+id/textView"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_alignTop="@+id/directionButton_3_2"
+                android:layout_alignLeft="@+id/speedButton_increase"
+                android:textStyle="bold" />
+
+
 
 
         </RelativeLayout>
@@ -139,7 +148,8 @@
             android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/robot_camera_img"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            android:contentDescription="@string/photocapture" />
 
 
 
