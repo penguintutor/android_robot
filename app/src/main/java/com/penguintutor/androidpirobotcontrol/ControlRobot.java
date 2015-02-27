@@ -88,11 +88,43 @@ public class ControlRobot {
     public String cmd(String instruction) {
         switch (instruction) {
             case "status":
-                sendCmd("status");
+                sendCmd("/status");
                 return "Command Sent";
         }
         return "InvalidCommand";
     }
+
+    /* Normally change speed using a relative amount - this means that if something
+    else has already set speed then we change relative to that regardless of what we think
+    the speed is.
+     */
+
+    // change speed by stated amount
+    // minimum / maximum change is -10 / +10
+    public String speedChange(int chgValue) {
+        if (chgValue < -10 || chgValue > 10) {
+            return "Invalid value";
+        }
+        // web-robot uses 0 to 100 - this uses 1 to 10 - so * 10
+        chgValue *= 10;
+        sendCmd("/control?cmd=speed&chg=" + chgValue);
+        return "OK";
+
+    }
+
+
+    @SuppressWarnings("unused")
+    // Used to set an actual speed rather than relative speed
+    public String speedSet(int chgValue) {
+        if (chgValue < 0 || chgValue > 10) {
+            return "Invalid value";
+        }
+        // web-robot uses 0 to 100 - this uses 1 to 10 - so * 10
+        chgValue *= 10;
+        sendCmd("/control?cmd=speed&set=" + chgValue);
+        return "OK";
+    }
+
 
 
     // lower level command - where command needs to be formatted as url suffix string

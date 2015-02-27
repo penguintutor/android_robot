@@ -35,6 +35,7 @@ public class MainControl extends Activity {
 
         /**
          * Set button handlers - uses OnTouchListener so that up and down can be registered
+         * whereas other buttons can instead be registered using the onclick handlers
          */
         findViewById(R.id.directionButton_1_1).setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -152,6 +153,18 @@ public class MainControl extends Activity {
 
 
     }
+
+
+    public void buttonDecreaseClick (View view) {
+        robot.speedChange(-1);
+    }
+
+    public void buttonIncreaseClick (View view) {
+        robot.speedChange(1);
+    }
+
+
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {

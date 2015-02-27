@@ -110,7 +110,8 @@
                 android:layout_alignTop="@+id/directionButton_3_1"
                 android:layout_toRightOf="@+id/directionButton_3_1"
                 android:src="@drawable/speed_1_1"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:onClick="buttonIncreaseClick" />
 
 
             <ImageButton
@@ -121,7 +122,8 @@
                 android:layout_alignTop="@+id/directionButton_3_3"
                 android:layout_toRightOf="@+id/directionButton_3_3"
                 android:src="@drawable/speed_1_2"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:onClick="buttonDecreaseClick" />
 
             <TextView
                 android:layout_width="90dp"
